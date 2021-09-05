@@ -13,11 +13,15 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>
           Explore the{" "}
-          <a href="https://neo4j.com" target="_blank">
+          <a href="https://neo4j.com" rel="noopener noreferrer" target="_blank">
             Neo4j
           </a>{" "}
           and{" "}
-          <a href="https://nextjs.org" target="_blank">
+          <a
+            href="https://nextjs.org"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
             Next.js
           </a>{" "}
           powered <a href="/api/graphql">GraphQL API</a>
