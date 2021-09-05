@@ -12,6 +12,7 @@ export const typeDefs = gql`
   }
 
   type User {
+    id: ID! @id
     username: String
     created: DateTime @timestamp(operations: [CREATE])
   }
