@@ -8,6 +8,8 @@ If you do not have [Docker](https://www.docker.com) installed on your developmen
 
 ## Getting started
 
+**IMPORTANT: Before starting this project, please be sure to copy `nextjs/.env.sample` to `nextjs/.env.local`**
+
 To spin up your Dockerized Neo4j and Next.js project:
 
 ```sh
@@ -50,7 +52,7 @@ This will ensure that your Cypher file(s) are copied and then processed by the `
 
 ### Next.js
 
-An example [Next.js](https://nextjs.org) application has been created so that we can leverage the [Neo4j GraphQL Library](https://neo4j.com/docs/graphql-manual/current/).
+An example [Next.js](https://nextjs.org) application has been created so that we can use the [Neo4j GraphQL Library](https://neo4j.com/docs/graphql-manual/current/) to create our GraphQL API.
 
 Once you have started your Dockerized project, you can access the Next.js GraphQL API at [http://localhost:3000/api/graphql](http://localhost:3000/api/graphql)
 
@@ -74,11 +76,13 @@ You should see a response similar to:
   "data": {
     "ping": {
       "message": "Pong",
-      "timestamp": "2021-09-05T02:05:52.000Z"
+      "timestamp": "2021-09-05T02:23:55.000Z"
     }
   }
 }
 ```
+
+![nextjs/__screenshots__/graphiql-example-01-ping.png](nextjs/__screenshots__/graphiql-example-01-ping.png)
 
 #### EXAMPLE: Create a new User
 
@@ -104,7 +108,7 @@ You should see a response similar to:
       "users": [
         {
           "username": "therobbrennan",
-          "created": "2021-09-05T02:11:01.624Z"
+          "created": "2021-09-05T02:24:54.078Z"
         }
       ]
     }
@@ -112,11 +116,45 @@ You should see a response similar to:
 }
 ```
 
+![nextjs/__screenshots__/graphiql-example-02-create-user.png](nextjs/__screenshots__/graphiql-example-02-create-user.png)
+
 **IMPORTANT: This mutation will allow you to create duplicate users if you have not defined the appropriate constraint within your Neo4j database!**
 
 If you would like to prevent duplicate `User` nodes from being created with the same `username`, for example, you can log in to the Neo4j Browser at [http://localhost:7474/browser/](http://localhost:7474/browser/) and execute the following Cypher command:
 
 `CREATE CONSTRAINT ON (node:User) ASSERT (node.username) IS UNIQUE;`
+
+#### EXAMPLE: Query all of the users in our database
+
+In this example, let's count how many `User` nodes exist in our Neo4j database - and see each user's `username` and `created` details:
+
+```gql
+{
+  usersCount
+  users {
+    username
+    created
+  }
+}
+```
+
+You should see a response similar to:
+
+```json
+{
+  "data": {
+    "usersCount": 1,
+    "users": [
+      {
+        "username": "therobbrennan",
+        "created": "2021-09-05T02:24:54.078Z"
+      }
+    ]
+  }
+}
+```
+
+![nextjs/__screenshots__/graphiql-example-03-query-all-users.png](nextjs/__screenshots__/graphiql-example-03-query-all-users.png)
 
 ### Resources
 
