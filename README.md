@@ -8,6 +8,8 @@ If you do not have [Docker](https://www.docker.com) installed on your developmen
 
 ## Getting started
 
+### Neo4j
+
 To spin up your Dockerized Neo4j instance:
 
 ```sh
@@ -31,7 +33,7 @@ Once you've logged in, you are free to explore your Dockerized Neo4j instance.
 
 ![neo4j/v4.x.x/__screenshots__/neo4j-browser-example.png](neo4j/v4.x.x/__screenshots__/neo4j-browser-example.png)
 
-### OPTIONAL: Use Cypher text file(s) to seed your database
+#### OPTIONAL: Use Cypher text file(s) to seed your database
 
 If you would like to have your database load a pre-defined series of Cypher commands - such as the example at `neo4j/v4.x.x/__seed__/db.cypher` - simply uncomment the following in `neo4j/v4.x.x/Dockerfile`:
 
