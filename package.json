@@ -1,0 +1,35 @@
+{
+  "name": "dockerized-neo4j-with-nextjs",
+  "version": "0.0.0",
+  "description": "This project is a simple example of how to work with [Neo4j](https://neo4j.com) and [Next.js](https://nextjs.org) within a [Docker](https://www.docker.com) environment.",
+  "keywords": [],
+  "author": "Rob Brennan <rob@therobbrennan.com> (therobbrennan.com)",
+  "license": "ISC",
+  "scripts": {
+    "build": "npm run dev:clean",
+    "start": "npm run dev",
+    "dev": "npm run docker:start",
+    "dev:clean": "npm run docker:build",
+    "dev:stop": "npm run docker:stop",
+    "open:repo": "npm repo",
+    "docker:build": "docker-compose rm -f && docker-compose up --remove-orphans --build --force-recreate --renew-anon-volumes",
+    "docker:start": "docker-compose up",
+    "docker:stop": "docker-compose -v down && docker system prune -f --volumes",
+    "docker:neo4j:build": "docker-compose up -d --force-recreate --no-deps --build neo4j",
+    "docker:neo4j:restart": "docker-compose restart neo4j",
+    "docker:neo4j:shell": "docker exec -ti dockerized-neo4j bash",
+    "docker:neo4j:cypher-shell": "docker exec -ti dockerized-neo4j cypher-shell -u neo4j -p letmein",
+    "docker:neo4j:data": "docker exec -ti dockerized-neo4j ls -al /var/lib/neo4j/data/",
+    "docker:destroy": "docker-compose rm -f -s -v",
+    "docker:destroy:global": "docker system prune -f --volumes && docker image prune -a -f",
+    "nuke": "clear && npm run docker:destroy:global && npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheRobBrennan/dockerized-neo4j-with-nextjs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TheRobBrennan/dockerized-neo4j-with-nextjs/issues"
+  },
+  "homepage": "https://github.com/TheRobBrennan/dockerized-neo4j#readme"
+}

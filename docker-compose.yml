@@ -1,0 +1,76 @@
+version: "3"
+
+services:
+  neo4j: # Official image available at https://hub.docker.com/_/neo4j
+    build: ./neo4j/v4.x.x
+    container_name: "dockerized-neo4j"
+    ports:
+      - 7474:7474 # HTTP
+      - 7473:7473 # HTTPS
+      - 7687:7687 # Bolt
+    environment:
+      # DB_HOST and DB_PORT values would appear in command-line output as:
+      # heimdall-neo4j | 2021-01-26 21:51:22.234-0800 INFO  Remote interface available at http://localhost:7474/
+      - DB_HOST=localhost
+      - DB_PORT=7474
+
+      # Make sure this matches the NEO4J_AUTH environment variable declared in ./neo4j/v4.x.x/Dockerfile
+      - DB_USER=neo4j
+      - DB_PASSWORD=letmein
+
+      # Auth0 JWT settings (using RS256)
+      # Navigate to your Auth0 Applications dashboard > Your App > Settings > Show advanced settings... > Certificates
+      # Copy the value from "Signing Certificate" to JWT_SECRET
+      #
+      # KUDOS: Special thanks to Daniel Starns for pointing me in the direction of Will Lyon's video at https://youtu.be/Ay7-RyX9XPM?t=5013
+      # - JWT_SECRET= |-
+      #   -----BEGIN CERTIFICATE-----
+      #   MIIDDzCCAfegAwIBAgIJIFoJXY1m7NOrMA0GCSqGSIb3DQEBCwUAMCUxIzAhBgNV
+      #   BAMTGmhlaW1kYWxsLWRlbW8udXMuYXV0aDAuY29tMB4XDTIxMDExNzA3MTQ1NFoX
+      #   DTM0MDkyNjA3MTQ1NFowJTEjMCEGA1UEAxMaaGVpbWRhbGwtZGVtby51cy5hdXRo
+      #   MC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC1V4bqjRz80fXB
+      #   7/o4nc/cpJ+Cpgd0a5bny0uUaKaGwaUH7W5VR2mxNyxoL6o4/LLCEsh9eN9/OHJE
+      #   HjKO03hth60KLNctLVR+N5IhtiIzeLxnm51/mzunFe0xyv0gJM6Wgz+FvHGb6xw4
+      #   NhjqjNzjFZq22NYXvoLBQBRBycxajuSDMCZpyfrZkdJEgD3dt3+MVVveNR3GhLfD
+      #   rWYuwpy5Ak4aLVaGbVFMc5Q+KQnALCPCOppv/XaFHGpjXNZW5mMXakuo9EpbVKvD
+      #   uhaVpdYVf3QZoZtyq0EHXWAfn8t3wOL/dZ+xIGbP86fzBcmu3ZVolIXhxwzTpqRX
+      #   r7gjcpcxAgMBAAGjQjBAMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFM2rReOb
+      #   ZXqQ5/Vz/72X/xcMdsyWMA4GA1UdDwEB/wQEAwIChDANBgkqhkiG9w0BAQsFAAOC
+      #   AQEAJG4p/B40SG32mxMLYL3o/bhd9KZ3kQuZLPTidRQ/iZy0yPj892TaPb70GcPb
+      #   unuS62fHOZ/lJ9HuZFaWzQ7onAA0Y+KA8EvMimND4tnXjak0ihX/Cn0hfs6yFqUo
+      #   BVpwAMmfeEbkx7k/9WJXPOGx1//fHFwDcvSFDy9OYv4NvQvOyXJu+DBZn/NuIIem
+      #   kR8hm75p80TNb2IGpmPpNI5Npej17BcC8K4e5QFp1MdzAUmikXlQz8WBcLBl9yZI
+      #   eAVcqJVgIXPtYqGF5UGcID7s/ipe7OlS1P3V4cOx4G7fJPbwQhuf/z/MMTAykUnR
+      #   5iTSiaXnes6u1Z36N+T73mhEpA==
+      #   -----END CERTIFICATE-----
+
+      # See https://neo4j.com/docs/operations-manual/current/docker/ref-settings/ for Docker configuration settings
+      # See https://neo4j.com/docs/operations-manual/current/docker/configuration/ for the naming convention for NEO4J settings
+      #   As an example, dbms.tx_log.rotation.size would be NEO4J_dbms_tx__log_rotation_size
+      - NEO4J_dbms_security_procedures_unrestricted=apoc.*
+      - NEO4J_apoc_import_file_enabled=true
+      - NEO4J_apoc_export_file_enabled=true
+
+      # Please set 'dbms.allow_upgrade' to 'true' in your configuration file and try again. Detailed description: Upgrade is required to migrate store to new major version.
+      - NEO4J_dbms_allow__upgrade=true
+
+      # Timezone - Default is UTC
+      - NEO4J_dbms_db_timezone=SYSTEM
+      - NEO4J_db_temporal_timezone=America/Los_Angeles
+
+    # volumes:
+    # Uncomment the following section if you want to persist Neo4j settings and data
+    #   # Stores the authentication and roles for each database, as well as the actual data contents of each database instance (in graph.db folder)
+    #   - ./neo4j/tmp/data:/data
+
+    #   # Outputting the Neo4j logs to a place outside the container ensures we can troubleshoot any errors in Neo4j, even if the container crashes.
+    #   - ./neo4j/tmp/logs:/logs
+
+    # Binds the import directory, so we can copy CSV or other flat files into that directory for importing into Neo4j.
+    # Load scripts for importing that data can also be placed in this folder for us to execute.
+    # - ./neo4j/tmp/import:/var/lib/neo4j/import
+
+    #   # Sets up our plugins directory. If we want to include any custom extensions or add the Neo4j APOC or graph algorithms library,
+    #   # exposing this directory simplifies the process of copying the jars for Neo4j to access.
+    #   - ./neo4j/tmp/plugins:/plugins
+    # # See https://neo4j.com/developer/docker-run-neo4j/ for additional configuration ideas
