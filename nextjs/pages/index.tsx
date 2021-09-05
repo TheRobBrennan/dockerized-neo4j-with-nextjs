@@ -28,7 +28,7 @@ export default function Home() {
           </a>{" "}
           powered{" "}
           <Link href="/api/graphql">
-            <a>GraphQL API</a>
+            <a target="_blank">GraphQL API</a>
           </Link>
         </h1>
       </main>
