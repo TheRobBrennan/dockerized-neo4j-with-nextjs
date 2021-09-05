@@ -30,6 +30,6 @@ COPY wrapper.sh wrapper.sh
 RUN chmod +x wrapper.sh
 
 ## If you would like to copy Cypher file(s) for import, please uncomment the line below
-# COPY ./__seed__/*.cypher /var/lib/neo4j/import/
+COPY ./__seed__/*.cypher /var/lib/neo4j/import/
 
 ENTRYPOINT ["./wrapper.sh"]
