@@ -1,5 +1,7 @@
 import Head from "next/head"
 import Image from "next/image"
+import Link from "next/link"
+
 import styles from "../styles/Home.module.css"
 
 export default function Home() {
@@ -24,7 +26,10 @@ export default function Home() {
           >
             Next.js
           </a>{" "}
-          powered <a href="/api/graphql">GraphQL API</a>
+          powered{" "}
+          <Link href="/api/graphql">
+            <a>GraphQL API</a>
+          </Link>
         </h1>
       </main>
 
