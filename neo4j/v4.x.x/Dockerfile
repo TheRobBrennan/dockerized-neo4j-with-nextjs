@@ -1,6 +1,9 @@
 # Official Neo4j Docker Images available at https://hub.docker.com/_/neo4j
 FROM neo4j:4.2.2
 
+# OPTIONAL: For arm64 (M1 Macs) comment the previous line, and uncomment the next line.
+# FROM neo4j/neo4j-arm64-experimental:4.3.6-arm64
+
 # OPTIONAL: Use Pacific time (PST/PDT) instead of UTC
 # This correctly sets the timezone for the Docker container; however you will have to define the following Neo4j configuration settings as well:
 #   # Timezone - Default is UTC
