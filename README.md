@@ -2,6 +2,22 @@
 
 This project is a simple example of how to work with [Neo4j](https://neo4j.com) within a [Docker](https://www.docker.com) container.
 
+I have also updated this project to support development on my new 2021 14" MacBook Pro - with commented out lines in `Dockerfile` when it is necessary to use a separate base image for development on Apple M1 silicon:
+
+![neo4j/v4.x.x/__screenshots__/apple-m1-mac-development.png](neo4j/v4.x.x/__screenshots__/apple-m1-mac-development.png)
+
+Neo4j `Dockerfile` example:
+
+```
+# neo4j/v4.x.x/Dockerfile
+
+# Official Neo4j Docker Images available at https://hub.docker.com/_/neo4j
+# FROM neo4j:4.2.2
+
+# OPTIONAL: For arm64 (M1 Macs), comment out the previous line and uncomment the following line.
+FROM neo4j/neo4j-arm64-experimental:4.3.6-arm64
+```
+
 All you need to have installed on your system to run this example is [Docker](https://www.docker.com).
 
 If you do not have [Docker](https://www.docker.com) installed on your development system, you can download and install the freely available [Docker Desktop](https://www.docker.com/products/docker-desktop).
@@ -37,7 +53,7 @@ Once you've logged in, you are free to explore your Dockerized Neo4j instance.
 
 #### OPTIONAL: Use Cypher text file(s) to seed your database
 
-If you would like to have your database load a pre-defined series of Cypher commands - such as the example at `neo4j/v4.x.x/__seed__/db.cypher` - simply uncomment the following in `neo4j/v4.x.x/Dockerfile`:
+If you would like to have your database load a pre-defined series of Cypher commands - such as the example at `neo4j/v4.x.x/__seed__/db.cypher` - uncomment the following in `neo4j/v4.x.x/Dockerfile`:
 
 ```sh
 # neo4j/v4.x.x/Dockerfile
@@ -264,4 +280,4 @@ You should see a response similar to:
 
 ### Resources
 
-If you are looking for a great overview on setting up a Next.js GraphQL API, I strongly recommend William Lyon's [blog post](https://www.lyonwj.com/blog/graphql-server-next-js-neo4j-aura-vercel) at [https://www.lyonwj.com/blog/graphql-server-next-js-neo4j-aura-vercel](https://www.lyonwj.com/blog/graphql-server-next-js-neo4j-aura-vercel).
+If you are looking for an excellent overview on setting up a Next.js GraphQL API, I strongly recommend William Lyon's [blog post](https://www.lyonwj.com/blog/graphql-server-next-js-neo4j-aura-vercel) at [https://www.lyonwj.com/blog/graphql-server-next-js-neo4j-aura-vercel](https://www.lyonwj.com/blog/graphql-server-next-js-neo4j-aura-vercel).
