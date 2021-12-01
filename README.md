@@ -8,7 +8,7 @@ If you do not have [Docker](https://www.docker.com) installed on your developmen
 
 ## Getting started
 
-**IMPORTANT: Before starting this project, please be sure to copy `nextjs/.env.sample` to `nextjs/.env.local`**
+**IMPORTANT: Before starting this project, please be sure to copy `nextjs/.env.sample` to `nextjs/.env.local` and to copy `nextjs-with-tailwind/.env.sample` to `nextjs-with-tailwind/.env.local`**
 
 To spin up your Dockerized Neo4j and Next.js project:
 
