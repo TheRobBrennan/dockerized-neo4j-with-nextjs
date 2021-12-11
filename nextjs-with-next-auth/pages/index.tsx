@@ -77,8 +77,10 @@ export async function getStaticProps() {
       }
     `,
   }).catch(e => {
+    // We need to handle the case where client.query returns void; otherwise our app will have a build failure
     console.error(`Unable to query our backend API: ${e}`)
 
+    // Notice we're matching the shape our destructured variable is looking for
     return {
       data: null
     }
