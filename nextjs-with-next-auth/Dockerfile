@@ -1,6 +1,6 @@
 FROM node:16
 
-ENV PORT 3000
+ENV PORT 3002
 
 # Create app directory
 RUN mkdir -p /usr/src/app
@@ -23,10 +23,10 @@ COPY . /usr/src/app
 RUN npm run build
 
 # Expose our Next.js web application port
-EXPOSE 3000
+EXPOSE 3002
 
 # Expose our Node.js debug port
 EXPOSE 9229
 
 # Start the app
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "dev", "-p $PORT"]

@@ -41,7 +41,7 @@ services:
     depends_on:
       - neo4j
     ports:
-      - 3002:3000 # Next.js application - Use a different port other than our default
+      - 3002:3002 # Next.js application - Use a different port other than our default
     build:
       context: ./nextjs-with-next-auth
       dockerfile: Dockerfile
