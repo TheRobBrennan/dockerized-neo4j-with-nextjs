@@ -76,11 +76,18 @@ export async function getStaticProps() {
         }
       }
     `,
-  });
+  }).catch(e => {
+    console.error(`Unable to query our backend API: ${e}`)
+
+    return {
+      data: null
+    }
+
+  })
 
   return {
     props: {
-      users: data.users,
+      users: data?.users || null,
     },
   };
 }
