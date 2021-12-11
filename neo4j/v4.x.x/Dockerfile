@@ -25,11 +25,12 @@ RUN sh -c 'cd /var/lib/neo4j/plugins && curl -L -O "${APOC_URI}"'
 # We need to expose port 7474 for HTTP, port 7473 for HTTPS, and port 7687 for Bolt
 EXPOSE 7474 7473 7687
 
+# OPTIONAL: If you would like to use a script to import data or other custom tasks, use the following as a guide:
 # Copy our wrapper which will allow us to do things like import sample data, etc.
-COPY wrapper.sh wrapper.sh
-RUN chmod +x wrapper.sh
+# COPY wrapper.sh wrapper.sh
+# RUN chmod +x wrapper.sh
 
 ## If you would like to copy Cypher file(s) for import, please uncomment the line below
-COPY ./__seed__/*.cypher /var/lib/neo4j/import/
+# COPY ./__seed__/*.cypher /var/lib/neo4j/import/
 
-ENTRYPOINT ["./wrapper.sh"]
+# ENTRYPOINT ["./wrapper.sh"]
