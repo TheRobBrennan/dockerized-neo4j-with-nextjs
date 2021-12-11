@@ -38,12 +38,12 @@ export default function Home({ users }) {
           >
             Next.js
           </a>{' '}
-          powered{' '}
+          powered
+          <br/>
           <Link href="/api/graphql">
             <a target="_blank">GraphQL API</a>
           </Link>{' '}
-          <br />
-          With{' '}
+          with{' '}
           <Link href="https://next-auth.js.org">
             <a target="_blank">NextAuth.js</a>
           </Link>
