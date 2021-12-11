@@ -278,6 +278,36 @@ You should see a response similar to:
 
 ![nextjs/__screenshots__/graphiql-example-03-query-all-users.png](nextjs/__screenshots__/graphiql-example-03-query-all-users.png)
 
+### Next.js with next-auth
+
+An example [Next.js](https://nextjs.org) application with [NextAuth.js](https://next-auth.js.org) has been created by [EarthlingDavey](https://github.com/EarthlingDavey) so that we can use the [Neo4j GraphQL Library](https://neo4j.com/docs/graphql-manual/current/) for our GraphQL API.
+
+1. Some auth providers (e.g. twitter) don't work with a localhost callback url  
+   If using twitter, set up a .local domain e.g. `http://nextjs-with-next-auth.local`  
+   A cross-platform guide for this is at:
+   [Using an /etc/hosts file for custom domains during development](https://support.acquia.com/hc/en-us/articles/360004175973-Using-an-etc-hosts-file-for-custom-domains-during-development)
+1. Create apps with your providers.
+   Follow the [GitHub guide](https://next-auth.js.org/providers/github), for example, on the [NextAuth.js docs](https://next-auth.js.org/getting-started/introduction).
+   This demo has been made with GitHub and Twitter in mind, but you can adapt the code to suit yourself.
+
+   - `GitHub App name` - Your choice, but it has to be unique across GitHub.
+   - `Homepage URL` - `http://localhost:3002` is my local Docker Desktop URL
+   - `Callback URL` - `http://localhost:3002/api/auth/callback/github`
+     - `Request user authorization (OAuth) during installation` - I would encourage you to tick this box so that users are confirming what access permissions your app is going to use
+
+   ![nextjs-with-next-auth/__screenshots__/create-github-app.png](nextjs-with-next-auth/__screenshots__/create-github-app.png)
+   ![nextjs-with-next-auth/__screenshots__/create-twitter-app.png](nextjs-with-next-auth/__screenshots__/create-twitter-app.png)
+
+1. Complete the env vars for your providers in `./nextjs-with-next-auth/.env.local`
+1. Start the docker containers as described earlier in this readme.
+1. Once you have started your Dockerized project, you can access the Next.js GraphQL API at [http://nextjs-with-next-auth.local:3002/api/graphql](http://nextjs-with-next-auth.local:3002/api/graphql)
+1. You should be able to sign in and out using the buttons in the header.
+1. A list of Users will be shown on the index page.
+   ![nextjs-with-next-auth/__screenshots__/index-page.png](nextjs-with-next-auth/__screenshots__/index-page.png)
+
+1. You can query the users at the graphql playground.
+   ![nextjs-with-next-auth/__screenshots__/graphiql-example-01-user.png](nextjs-with-next-auth/__screenshots__/graphiql-example-01-user.png)
+
 ### Resources
 
 If you are looking for an excellent overview on setting up a Next.js GraphQL API, I strongly recommend William Lyon's [blog post](https://www.lyonwj.com/blog/graphql-server-next-js-neo4j-aura-vercel) at [https://www.lyonwj.com/blog/graphql-server-next-js-neo4j-aura-vercel](https://www.lyonwj.com/blog/graphql-server-next-js-neo4j-aura-vercel).

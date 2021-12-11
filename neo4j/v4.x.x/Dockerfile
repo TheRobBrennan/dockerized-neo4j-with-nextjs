@@ -1,8 +1,5 @@
 # Official Neo4j Docker Images available at https://hub.docker.com/_/neo4j
-# FROM neo4j:4.2.2
-
-# OPTIONAL: For arm64 (M1 Macs) comment the previous line, and uncomment the next line.
-FROM neo4j/neo4j-arm64-experimental:4.3.6-arm64
+FROM neo4j:4.4.0
 
 # OPTIONAL: Use Pacific time (PST/PDT) instead of UTC
 # This correctly sets the timezone for the Docker container; however you will have to define the following Neo4j configuration settings as well:
@@ -28,11 +25,12 @@ RUN sh -c 'cd /var/lib/neo4j/plugins && curl -L -O "${APOC_URI}"'
 # We need to expose port 7474 for HTTP, port 7473 for HTTPS, and port 7687 for Bolt
 EXPOSE 7474 7473 7687
 
+# OPTIONAL: If you would like to use a script to import data or other custom tasks, use the following as a guide:
 # Copy our wrapper which will allow us to do things like import sample data, etc.
-COPY wrapper.sh wrapper.sh
-RUN chmod +x wrapper.sh
+# COPY wrapper.sh wrapper.sh
+# RUN chmod +x wrapper.sh
 
 ## If you would like to copy Cypher file(s) for import, please uncomment the line below
-COPY ./__seed__/*.cypher /var/lib/neo4j/import/
+# COPY ./__seed__/*.cypher /var/lib/neo4j/import/
 
-ENTRYPOINT ["./wrapper.sh"]
+# ENTRYPOINT ["./wrapper.sh"]
