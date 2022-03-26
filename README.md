@@ -2,22 +2,6 @@
 
 This project is a simple example of how to work with [Neo4j](https://neo4j.com) within a [Docker](https://www.docker.com) container.
 
-I have also updated this project to support development on my new 2021 14" MacBook Pro - with commented out lines in `Dockerfile` when it is necessary to use a separate base image for development on Apple M1 silicon:
-
-![neo4j/v4.x.x/__screenshots__/apple-m1-mac-development.png](neo4j/v4.x.x/__screenshots__/apple-m1-mac-development.png)
-
-Neo4j `Dockerfile` example:
-
-```
-# neo4j/v4.x.x/Dockerfile
-
-# Official Neo4j Docker Images available at https://hub.docker.com/_/neo4j
-# FROM neo4j:4.2.2
-
-# OPTIONAL: For arm64 (M1 Macs), comment out the previous line and uncomment the following line.
-FROM neo4j/neo4j-arm64-experimental:4.3.6-arm64
-```
-
 All you need to have installed on your system to run this example is [Docker](https://www.docker.com).
 
 If you do not have [Docker](https://www.docker.com) installed on your development system, you can download and install the freely available [Docker Desktop](https://www.docker.com/products/docker-desktop).
