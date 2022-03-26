@@ -13,6 +13,7 @@
     "dev:stop": "npm run docker:stop",
     "open:repo": "npm repo",
     "docker:build": "docker-compose rm -f && docker-compose up --remove-orphans --build --force-recreate --renew-anon-volumes",
+    "docker:clean": "docker system prune --all --force --volumes",
     "docker:start": "docker-compose up",
     "docker:stop": "docker-compose -v down && docker system prune -f --volumes",
     "docker:neo4j:build": "docker-compose up -d --force-recreate --no-deps --build neo4j",

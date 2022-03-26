@@ -2,22 +2,6 @@
 
 This project is a simple example of how to work with [Neo4j](https://neo4j.com) within a [Docker](https://www.docker.com) container.
 
-I have also updated this project to support development on my new 2021 14" MacBook Pro - with commented out lines in `Dockerfile` when it is necessary to use a separate base image for development on Apple M1 silicon:
-
-![neo4j/v4.x.x/__screenshots__/apple-m1-mac-development.png](neo4j/v4.x.x/__screenshots__/apple-m1-mac-development.png)
-
-Neo4j `Dockerfile` example:
-
-```
-# neo4j/v4.x.x/Dockerfile
-
-# Official Neo4j Docker Images available at https://hub.docker.com/_/neo4j
-# FROM neo4j:4.2.2
-
-# OPTIONAL: For arm64 (M1 Macs), comment out the previous line and uncomment the following line.
-FROM neo4j/neo4j-arm64-experimental:4.3.6-arm64
-```
-
 All you need to have installed on your system to run this example is [Docker](https://www.docker.com).
 
 If you do not have [Docker](https://www.docker.com) installed on your development system, you can download and install the freely available [Docker Desktop](https://www.docker.com/products/docker-desktop).
@@ -29,14 +13,20 @@ If you do not have [Docker](https://www.docker.com) installed on your developmen
 To spin up your Dockerized Neo4j and Next.js project:
 
 ```sh
-# Use the existing Docker images on your system
 $ npm run dev
 
-# OR #
-
-# Force a clean build to ensure your instances are using the latest code
+# OPTIONAL: Force a clean build using the latest images and code
 $ npm run dev:clean
 ```
+
+### What can I explore?
+
+Once you have started your Dockerized project, here are some of the following URLs you should be able to view in your web browser:
+
+- [http://localhost:3000](http://localhost:3000) - Example Dockerized [Next.js](https://nextjs.org) and Neo4j application
+- [http://localhost:3001](http://localhost:3001) - Example Dockerized [Next.js](https://nextjs.org) and Neo4j application using Tailwind CSS for styling
+- [http://localhost:3002](http://localhost:3002) - Example Dockerized [Next.js](https://nextjs.org) and Neo4j application using NextAuth.js to authenticate using GitHub
+- [http://localhost:7474/browser/](http://localhost:7474/browser/) - Dockerized Neo4j Browser - GUI to view and explore your Neo4j graph database
 
 ### Neo4j
 
@@ -282,8 +272,8 @@ You should see a response similar to:
 
 An example [Next.js](https://nextjs.org) application with [NextAuth.js](https://next-auth.js.org) has been created by [EarthlingDavey](https://github.com/EarthlingDavey) so that we can use the [Neo4j GraphQL Library](https://neo4j.com/docs/graphql-manual/current/) for our GraphQL API.
 
-1. Some auth providers (e.g. twitter) don't work with a localhost callback url  
-   If using twitter, set up a .local domain e.g. `http://nextjs-with-next-auth.local`  
+1. Some auth providers (e.g., Twitter) don't work with a localhost callback URL
+   If using Twitter, set up a .local domain, e.g. `http://nextjs-with-next-auth.local`
    A cross-platform guide for this is at:
    [Using an /etc/hosts file for custom domains during development](https://support.acquia.com/hc/en-us/articles/360004175973-Using-an-etc-hosts-file-for-custom-domains-during-development)
 1. Create apps with your providers.
