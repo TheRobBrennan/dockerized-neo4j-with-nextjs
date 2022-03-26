@@ -1,5 +1,6 @@
 # Official Neo4j Docker Images available at https://hub.docker.com/_/neo4j
-FROM neo4j:4.4.0
+# Neo4j Release Notes available at https://neo4j.com/release-notes/
+FROM neo4j:4.4.5
 
 # OPTIONAL: Use Pacific time (PST/PDT) instead of UTC
 # This correctly sets the timezone for the Docker container; however, you will have to define these settings in ./docker-compose.yml
