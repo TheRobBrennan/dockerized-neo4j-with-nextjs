@@ -13,10 +13,10 @@ If you do not have [Docker](https://www.docker.com) installed on your developmen
 To spin up your Dockerized Neo4j and Next.js project:
 
 ```sh
-$ npm run dev
+$ npm start
 
 # OPTIONAL: Force a clean build using the latest images and code
-$ npm run dev:clean
+$ npm run build
 ```
 
 ### What can I explore?
