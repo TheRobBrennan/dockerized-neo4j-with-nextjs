@@ -13,12 +13,9 @@ If you do not have [Docker](https://www.docker.com) installed on your developmen
 To spin up your Dockerized Neo4j and Next.js project:
 
 ```sh
-# Use the existing Docker images on your system
 $ npm run dev
 
-# OR #
-
-# Force a clean build to ensure your instances are using the latest code
+# OPTIONAL: Force a clean build to ensure your instances are using the latest images and code
 $ npm run dev:clean
 ```
 
