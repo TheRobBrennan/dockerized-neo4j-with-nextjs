@@ -24,8 +24,11 @@ $ npm run build
 Once you have started your Dockerized project, here are some of the following URLs you should be able to view in your web browser:
 
 - [http://localhost:3000](http://localhost:3000) - Example Dockerized [Next.js](https://nextjs.org) and Neo4j application
+  - [http://localhost:3000/api/graphql](http://localhost:3000/api/graphql) - GraphQL playground
 - [http://localhost:3001](http://localhost:3001) - Example Dockerized [Next.js](https://nextjs.org) and Neo4j application using Tailwind CSS for styling
+  - [http://localhost:3001/api/graphql](http://localhost:3001/api/graphql) - GraphQL playground
 - [http://localhost:3002](http://localhost:3002) - Example Dockerized [Next.js](https://nextjs.org) and Neo4j application using NextAuth.js to authenticate using GitHub
+  - [http://localhost:3002/api/graphql](http://localhost:3002/api/graphql) - GraphQL playground
 - [http://localhost:7474/browser/](http://localhost:7474/browser/) - Dockerized Neo4j Browser - GUI to view and explore your Neo4j graph database
 
 ### Neo4j
