@@ -15,7 +15,7 @@ To spin up your Dockerized Neo4j and Next.js project:
 ```sh
 $ npm run dev
 
-# OPTIONAL: Force a clean build to ensure your instances are using the latest images and code
+# OPTIONAL: Force a clean build using the latest images and code
 $ npm run dev:clean
 ```
 
