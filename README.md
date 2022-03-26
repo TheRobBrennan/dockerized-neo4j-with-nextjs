@@ -272,8 +272,8 @@ You should see a response similar to:
 
 An example [Next.js](https://nextjs.org) application with [NextAuth.js](https://next-auth.js.org) has been created by [EarthlingDavey](https://github.com/EarthlingDavey) so that we can use the [Neo4j GraphQL Library](https://neo4j.com/docs/graphql-manual/current/) for our GraphQL API.
 
-1. Some auth providers (e.g. twitter) don't work with a localhost callback url  
-   If using twitter, set up a .local domain e.g. `http://nextjs-with-next-auth.local`  
+1. Some auth providers (e.g., Twitter) don't work with a localhost callback URL
+   If using Twitter, set up a .local domain, e.g. `http://nextjs-with-next-auth.local`
    A cross-platform guide for this is at:
    [Using an /etc/hosts file for custom domains during development](https://support.acquia.com/hc/en-us/articles/360004175973-Using-an-etc-hosts-file-for-custom-domains-during-development)
 1. Create apps with your providers.
